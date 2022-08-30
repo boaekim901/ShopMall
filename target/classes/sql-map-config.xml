@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.ezen.biz.dto.ProductVO" alias="product"/>
+		<typeAlias type="com.ezen.biz.dto.MemberVO" alias="member"/>
+		<typeAlias type="com.ezen.biz.dto.AddressVO" alias="address"/>
+		<typeAlias type="com.ezen.biz.dto.CartVO" alias="cart"/>
+		<typeAlias type="com.ezen.biz.dto.OrderVO" alias="order"/>
+		<typeAlias type="com.ezen.biz.dto.QnaVO" alias="qna"/>
+		<typeAlias type="com.ezen.biz.dto.AdminVO" alias="admin"/>
+		<typeAlias type="com.ezen.biz.dto.ProductCommentVO" alias="comment"/>
+				
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mappings/product-mapping.xml"/>
+		<mapper resource="mappings/member-mapping.xml"/>
+		<mapper resource="mappings/cart-mapping.xml"/>
+		<mapper resource="mappings/order-mapping.xml"/>
+		<mapper resource="mappings/qna-mapping.xml"/>
+		<mapper resource="mappings/admin-mapping.xml"/>
+		<mapper resource="mappings/comment-mapping.xml"/>		
+	</mappers>
+</configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commentMapper">
+	<insert id="saveComment" parameterType="comment">
+		INSERT INTO product_comment(comment_seq,pseq,content,writer)
+		VALUES(product_comment_seq.NEXTVAL, #{pseq},#{content},#{writer})
+	</insert>
+	
+	<select id ="countCommnetList" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM product_comment
+		WHERE pseq=#{pseq}
+	</select>
+	
+	<select id="commentList" parameterType="int" resultType="comment">
+		SELECT * FROM product_comment WHERE pseq =#{pseq} ORDER BY regdate DESC
+	</select>
+	
+	<select id="commnetListWithPaging" parameterType="hashMap" resultType="comment">
+		<![CDATA[
+		SELECT comment_seq, pseq, content,writer, regdate, modifydate
+		  FROM (SELECT row_number() over(ORDER BY regdate DESC) rn, comment_seq, pseq, content,writer, regdate, modifydate
+		          FROM product_comment 
+		         WHERE pseq=#{pseq})
+		 WHERE rn <=#{criteria.pageNum} * #{criteria.rowsPerPage}
+		   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		   ]]>
+	</select>
+</mapper>

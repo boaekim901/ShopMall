@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qnaMapper">
+	
+	<select id="getListQna" parameterType="String" resultType="qna">
+		SELECT * FROM qna WHERE id = #{id} ORDER BY qseq DESC
+	</select>
+	
+	<select id="getQna" parameterType="int" resultType="qna">
+		SELECT * FROM qna WHERE qseq =#{qseq}
+	</select>
+	
+	<insert id="insertQna">
+		INSERT INTO qna(qseq, subject, content,id) VALUES (qna_seq.NEXTVAL, #{subject}, #{content},#{id})
+	</insert>
+</mapper>
